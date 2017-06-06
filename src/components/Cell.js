@@ -11,16 +11,21 @@ class Cell extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    if (this.props.alive) {
-      if (this.state.onceAlive) {
-        return;
-      } else {
-        this.setState({ onceAlive: true })
-      }
+  // darken cells if they were once alive
+  // componentDidUpdate() {
+  //   if (this.props.alive === 0) {
+  //     this.setState( { onceAlive: false });
+  //   }
+  //   else if (this.props.alive) {
+  //     if (this.state.onceAlive) {
+  //       return;
+  //     } else {
+  //       this.setState({ onceAlive: true })
+  //     }
+  //
+  //   }
+  // }
 
-    }
-  }
 
   handleClick() {
     let x = this.props.col;
@@ -32,9 +37,10 @@ class Cell extends React.Component {
     let aliveOrDead = this.props.alive ? "alive" : "";
     let onceAlive = this.state.onceAlive ? "onceAlive" : '';
     let cssClasses = `cell ${aliveOrDead} ${onceAlive}`;
+    let nucleus = this.props.alive ? 'Φ' : ""
 
       return (
-      <div className={cssClasses} onClick={this.handleClick}></div>
+      <div className={cssClasses} onClick={this.handleClick}> <p><span className="nucleus">{nucleus}</span></p></div>
       )
   }
 }
