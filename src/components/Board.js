@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from './Cell.js'
+import Counter from './Counter.js'
 
 // var nums = [];
 // for (var i = 1; i <= 1000; i++) nums.push(i);
@@ -15,18 +16,9 @@ class Board extends React.Component {
     this.randomBoard = this.randomBoard.bind(this);
 
     this.state = {
-      board: [
-      [true, false, false, false, true, false, false, false, false, false],
-      [false, true, false, false, false, false, false, false, false, false],
-      [false, false, true, false, false, false, false, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, true, false, false, false, false, false],
-      [false, false, false, true, false, false, false, false, false, false],
-      [false, false, false, false, false, false, true, false, false, false],
-      [false, false, false, false, true, true, false, false, false, false],
-      [false, false, false, false, false, false, true, false, false, false],
-      [false, false, true, true, true, false, false, false, false, false]
-    ]
+      board: [],
+      generation: 1
+      // generation: 1,
   };
   }
 
@@ -54,10 +46,16 @@ class Board extends React.Component {
       })
     })
 
-    this.setState({board: newBoard});
+    this.setState({
+      board: newBoard,
+      generation: this.state.generation + 1
+    });
+    // this.incrementCounter();
   }
 
-  startGenerations() {}
+  startGenerations() {
+
+  }
 
   countNeighbors(row,col) {
     let neighbors = 0;
@@ -83,23 +81,25 @@ class Board extends React.Component {
 
     newBoard = newBoard.map((row, y) => {
       return row.map((cell, x) => {
-        return 0;
-      })
-    })
-
-    this.setState({ board: newBoard })
-
-    newBoard = newBoard.map((row, y) => {
-      return row.map((cell, x) => {
         return false;
       })
     })
 
-    this.setState({ board: newBoard })
+    this.setState({ board: newBoard, generation: 1 })
   }
 
   randomBoard() {
-    let newBoard = this.state.board;
+
+
+    let newBoard = [];
+    for (let i=0; i<16; i++) {
+      const tempRow = [];
+      for (let j=0; j<30; j++) {
+        tempRow.push(false);
+      }
+      newBoard.push(tempRow);
+    }
+
 
     newBoard = newBoard.map((row, y) => {
       return row.map((cell, x) => {
@@ -109,20 +109,31 @@ class Board extends React.Component {
       })
     });
 
-    this.setState( {board: newBoard} );
+    this.setState( {board: newBoard, generation: 1} );
+    // this.setState( {generation: 1} )
+  }
+
+  componentDidMount() {
+    this.randomBoard();
   }
 
   render() {
     return (
       <div>
-      <div className='buttons'>
-        <button>Start</button>
-        <button>Stop</button>
-        <button onClick={this.clearBoard}>Clear</button>
-        <button onClick={this.randomBoard}>New Board </button>
-        <button onClick={this.stepOneGeneration}>One Step</button>
-      </div>
+        <Counter generation={this.state.generation}/>
+
+        <div className='buttons'>
+          <button>Start</button>
+          <button>Stop</button>
+          <button onClick={this.clearBoard}>Clear</button>
+          <button onClick={this.randomBoard}>New Board </button>
+          <button onClick={this.stepOneGeneration}>One Step</button>
+        </div>
+
+
+
         <div className='board'>
+
         {this.state.board.map((row, i) => {
           return row.map((cell, j) => {
             return <Cell
