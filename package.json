@@ -2,8 +2,9 @@
   "name": "game-of-life",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mathewleland.github.io/game-of-life"
+  "homepage": "https://mathewleland.github.io/game-of-life",
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "npm-run-all": "^4.0.2",
     "react-scripts": "1.0.7"
   },
@@ -18,6 +19,8 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
