@@ -79,7 +79,8 @@ h1 {
 
 .alive {
 
-  background: linear-gradient(to right, $alive, #1F2443);
+  // background: linear-gradient(to right, $alive, #1F2443);
+  background-color: #1F2443;
   border: 1px groove $cellBorder;
   border-radius: 19px 25px 10px 25px;
 

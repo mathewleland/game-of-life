@@ -53,7 +53,7 @@ h1 {
   background-color: transparent; }
 
 .alive {
-  background: linear-gradient(to right, #619bc7, #1F2443);
+  background-color: #1F2443;
   border: 1px groove white;
   border-radius: 19px 25px 10px 25px; }
 
