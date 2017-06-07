@@ -12,8 +12,8 @@ body {
   color: white;
 
   button {
-    background-color: $alive;
-    border: 2px solid $cellBorder;
+    background: linear-gradient(to right, #1F2443);
+    border: 2px groove $cellBorder;
     color: $cellnucleus;
     margin: -80px 5px 20px 10px;
     border-radius: 5px;
@@ -41,10 +41,11 @@ h1 {
   display: flex;
   // flex-direction: row;
   flex-wrap: wrap;
+  // background-color: black;
   background-image: url('https://ak9.picdn.net/shutterstock/videos/4740866/thumb/1.jpg');
   // background-image: url('./background.jpg');
   background-repeat: repeat;
-  border: 1px white solid;
+  border: 2px white inset;
   border-radius: 15px;
   text-align: center;
 }

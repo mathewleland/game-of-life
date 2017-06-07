@@ -14,11 +14,13 @@ class Board extends React.Component {
     this.stepOneGeneration = this.stepOneGeneration.bind(this);
     this.clearBoard = this.clearBoard.bind(this);
     this.randomBoard = this.randomBoard.bind(this);
+    this.startGenerations = this.startGenerations.bind(this);
+    this.stopRunning = this.stopRunning.bind(this);
 
     this.state = {
       board: [],
-      generation: 1
-      // generation: 1,
+      generation: 1,
+      running: false
   };
   }
 
@@ -50,11 +52,18 @@ class Board extends React.Component {
       board: newBoard,
       generation: this.state.generation + 1
     });
-    // this.incrementCounter();
   }
 
   startGenerations() {
+    this.setState({ running: true })
+    this.interval = setInterval(() => {
+      this.stepOneGeneration();
+    },200);
+  }
 
+  stopRunning() {
+    clearInterval(this.interval);
+    this.setState({ running: false})
   }
 
   countNeighbors(row,col) {
@@ -77,6 +86,7 @@ class Board extends React.Component {
   }
 
   clearBoard() {
+    this.stopRunning();
     let newBoard = this.state.board;
 
     newBoard = newBoard.map((row, y) => {
@@ -89,8 +99,7 @@ class Board extends React.Component {
   }
 
   randomBoard() {
-
-
+    this.stopRunning();
     let newBoard = [];
     for (let i=0; i<16; i++) {
       const tempRow = [];
@@ -99,7 +108,6 @@ class Board extends React.Component {
       }
       newBoard.push(tempRow);
     }
-
 
     newBoard = newBoard.map((row, y) => {
       return row.map((cell, x) => {
@@ -110,7 +118,6 @@ class Board extends React.Component {
     });
 
     this.setState( {board: newBoard, generation: 1} );
-    // this.setState( {generation: 1} )
   }
 
   componentDidMount() {
@@ -118,16 +125,21 @@ class Board extends React.Component {
   }
 
   render() {
+
+    let playButton = this.state.running ?
+      <button onClick={this.stopRunning} >||</button>
+      :
+      <button onClick={this.startGenerations}>▶</button>;
     return (
       <div>
         <Counter generation={this.state.generation}/>
 
         <div className='buttons'>
-          <button>Start</button>
-          <button>Stop</button>
+          {playButton}
+          
           <button onClick={this.clearBoard}>Clear</button>
           <button onClick={this.randomBoard}>New Board </button>
-          <button onClick={this.stepOneGeneration}>One Step</button>
+          <button onClick={this.stepOneGeneration}> Step</button>
         </div>
 
 
@@ -146,6 +158,8 @@ class Board extends React.Component {
           })
         })}
         </div>
+
+        <div className="nucleus"></div>
       </div>
     )
   }

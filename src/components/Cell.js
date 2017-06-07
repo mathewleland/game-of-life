@@ -37,10 +37,13 @@ class Cell extends React.Component {
     let aliveOrDead = this.props.alive ? "alive" : "";
     let onceAlive = this.state.onceAlive ? "onceAlive" : '';
     let cssClasses = `cell ${aliveOrDead} ${onceAlive}`;
-    let nucleus = this.props.alive ? 'Φ' : ""
+    const icons = ['.', '°', '΅', '಼', '༢', 'ᕀ']
+    let icon = icons[Math.floor( Math.random() * 6)];
+    icon = icons[3];
+    let nucleus = this.props.alive ? icon : "";
 
       return (
-      <div className={cssClasses} onClick={this.handleClick}> <p><span className="nucleus">{nucleus}</span></p></div>
+      <div className={cssClasses} onClick={this.handleClick}> <p className="nucleus">{nucleus}</p></div>
       )
   }
 }

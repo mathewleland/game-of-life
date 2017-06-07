@@ -2,6 +2,7 @@
   "name": "game-of-life",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mathewleland.github.io/game-of-life"
   "devDependencies": {
     "npm-run-all": "^4.0.2",
     "react-scripts": "1.0.7"

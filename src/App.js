@@ -8,7 +8,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1> Conway's Game of life</h1>
-        <p>Generate some cells by clicking on squares to bring them to life.  Then see what happens to them over generations</p>
+        <p>Toggle life by clicking cells</p>
+        <p>See what happens to them over generations</p>
 
         <Board />
       </div>
