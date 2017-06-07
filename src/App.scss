@@ -1,49 +1,101 @@
-$dead: #757575;
-$alive: #ffff8d;
-$onceAlive: ##212121;
+// $dead: black;
+$alive: #619bc7;
+// $onceAlive: #212121;
+$background: black;
+$cellBorder: white;
+$cellnucleus: #FF008D;
 
 
 body {
   text-align: center;
+  background-color: $background;
+  color: white;
 
+  button {
+    background-color: $alive;
+    border: 2px solid $cellBorder;
+    color: $cellnucleus;
+    margin: -80px 5px 20px 10px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  p {
+    line-height: 2px;
+  }
 }
 
 h1 {
-  color: blue;
+  color: $alive;
+
 }
 
 .board {
-  width: 370px;
-  height: 360px;
-  // border: 2px solid black;
+  width: 1115px;
+  height: 610px;
   margin: 0px auto;
-  padding-top: 10px;
+  padding-top: 0px;
   display: flex;
   // flex-direction: row;
   flex-wrap: wrap;
-  // overflow:auto;
+  background-image: url('https://ak9.picdn.net/shutterstock/videos/4740866/thumb/1.jpg');
+  // background-image: url('./background.jpg');
+  background-repeat: repeat;
+  border: 1px white solid;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.counter {
+  display: block;
+  background-color: $background;
+  color: $alive;
+  width: 125px;
+  margin: 0px auto -20px auto;
+  padding-top: 1px;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 90px;
+
+  h1 {
+    padding: 0px;
+    margin-top: -30px;
+    font-size: 58px;
+  }
+
 }
 
 .cell {
-  width: 35px;
-  height: 35px;
-  border: .5px solid white;
-  background-color: $dead;
+  width: 33px;
+  height: 33px;
+  border: 2px solid transparent;
+  background-color: transparent;
 
 }
 
 .alive {
 
-  background-color: $alive !important;
-  // margin: -5px 0;
-  // overflow:auto;
+  background: linear-gradient(to right, $alive, #1F2443);
+  border: 1px groove $cellBorder;
+  border-radius: 19px 25px 10px 25px;
 
 }
 
-.dead {
-  background-color: $dead;
-}
+.nucleus {
+    margin: 10px;
+    width: 10px;
+    height: 10px;
+    font-size: 24px;
+    // background: ;
+    -webkit-animation: spin 10s infinite linear;
+    color: $cellnucleus;
+    font-weight:bold;
 
-.onceAlive {
-  background-color: $onceAlive;
+    @-webkit-keyframes spin {
+    	0%  {-webkit-transform: rotate(360deg);}
+    	100% {-webkit-transform: rotate(0deg);}
+    }
 }
