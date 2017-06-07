@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Board from './components/Board.js'
+import Board from './components/Board.js';
 
 class App extends Component {
 
@@ -16,5 +16,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

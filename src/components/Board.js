@@ -1,9 +1,6 @@
 import React from 'react';
-import Cell from './Cell.js'
-import Counter from './Counter.js'
-
-// var nums = [];
-// for (var i = 1; i <= 1000; i++) nums.push(i);
+import Cell from './Cell.js';
+import Counter from './Counter.js';
 
 class Board extends React.Component {
   constructor() {
@@ -21,7 +18,7 @@ class Board extends React.Component {
       board: [],
       generation: 1,
       running: false
-  };
+    };
   }
 
   toggleCell(x,y) {
@@ -126,17 +123,19 @@ class Board extends React.Component {
 
   render() {
 
-    let playButton = this.state.running ?
+    let playButton =
+      this.state.running ?
       <button onClick={this.stopRunning} >||</button>
       :
       <button onClick={this.startGenerations}>▶</button>;
+
+
     return (
       <div>
         <Counter generation={this.state.generation}/>
 
         <div className='buttons'>
           {playButton}
-          
           <button onClick={this.clearBoard}>Clear</button>
           <button onClick={this.randomBoard}>New Board </button>
           <button onClick={this.stepOneGeneration}> Step</button>

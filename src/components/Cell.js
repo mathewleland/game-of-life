@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Cell extends React.Component {
 
@@ -6,9 +7,9 @@ class Cell extends React.Component {
     super();
     this.handleClick = this.handleClick.bind(this);
 
-    this.state = {
-      onceAlive: false
-    }
+    // this.state = {
+    //   onceAlive: false
+    // }
   }
 
   // darken cells if they were once alive
@@ -35,17 +36,21 @@ class Cell extends React.Component {
 
   render() {
     let aliveOrDead = this.props.alive ? "alive" : "";
-    let onceAlive = this.state.onceAlive ? "onceAlive" : '';
-    let cssClasses = `cell ${aliveOrDead} ${onceAlive}`;
-    const icons = ['.', '°', '΅', '಼', '༢', 'ᕀ']
-    let icon = icons[Math.floor( Math.random() * 6)];
-    icon = icons[3];
-    let nucleus = this.props.alive ? icon : "";
+    // let onceAlive = this.state.onceAlive ? "onceAlive" : '';
+    let cssClasses = `cell ${aliveOrDead}`;
+    let nucleus = this.props.alive ? '಼' : "";
 
       return (
       <div className={cssClasses} onClick={this.handleClick}> <p className="nucleus">{nucleus}</p></div>
       )
   }
+}
+
+Cell.propTypes = {
+  row: PropTypes.number.isRequired,
+  col: PropTypes.number.isRequired,
+  alive: PropTypes.bool.isRequired,
+  toggleCell: PropTypes.func.isRequired
 }
 
 export default Cell;
