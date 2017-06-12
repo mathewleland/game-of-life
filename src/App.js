@@ -10,6 +10,7 @@ class App extends Component {
         <h1> Conway's Game of life</h1>
         <p>Toggle life by clicking cells</p>
         <p>See what happens to them over generations</p>
+        <p> For full details on <a href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life'>Conway's game of Life, read about it here</a></p>
 
         <Board />
       </div>
